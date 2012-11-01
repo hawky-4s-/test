@@ -1,13 +1,17 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.jbpt</groupId>
 	<artifactId>jbpt</artifactId>
 	<version>0.2.314</version>
+	<packaging>pom</packaging>
 
 	<name>Business Process Technologies 4 Java</name>
-	<description>This open source project includes source code developed for research purposes in the domain of Business Process Management. </description>
+	<description>This open source project includes source code developed for research purposes in the domain of Business Process Management.</description>
 	<url>http://code.google.com/p/jbpt/</url>
 	<inceptionYear>2008</inceptionYear>
 
@@ -32,6 +36,16 @@
 		<project.build.sourceEncoding>Cp1252</project.build.sourceEncoding>
 	</properties>
 
+    <modules>
+		<module>jbpt-parent</module>
+		<module>jbpt-core</module>
+		<module>jbpt-deco</module>	
+		<module>jbpt-petri</module>
+		<module>jbpt-bpm</module>
+        <module>jbpt-bp</module>		
+		<module>jbpt-test</module>		
+    </modules>
+	
 	<!-- Plugins to execute on Build -->
 	<build>
 		<finalName>jbpt-${project.version}-${buildNumber}</finalName>
@@ -79,97 +93,9 @@
 						<item>timestamp</item>
 					</items>
 				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<version>2.4</version>
-				<configuration>
-					<archive>
-						<!-- Addition for OSGi -->
-						<manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
-					</archive>
-				</configuration>
-			</plugin>
-			<!-- For OSGi -->
-			<plugin>
-				<groupId>org.apache.felix</groupId>
-				<artifactId>maven-bundle-plugin</artifactId>
-				<version>2.3.7</version>
-				<extensions>true</extensions>
-				<inherited>true</inherited>
-				<executions>
-					<execution>
-						<id>bundle-manifest</id>
-						<phase>process-classes</phase>
-						<goals>
-							<goal>manifest</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<archive>
-						<forced>true</forced>
-					</archive>
-					<supportedProjectTypes>
-						<supportedProjectType>jar</supportedProjectType>
-					</supportedProjectTypes>
-				</configuration>
-			</plugin>
+			</plugin>		
 		</plugins>
-		
-		<pluginManagement>
-			<plugins>
-				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
-				<plugin>
-					<groupId>org.eclipse.m2e</groupId>
-					<artifactId>lifecycle-mapping</artifactId>
-					<version>1.0.0</version>
-					<configuration>
-						<lifecycleMappingMetadata>
-							<pluginExecutions>
-								<pluginExecution>
-									<pluginExecutionFilter>
-										<groupId>
-											org.apache.felix
-										</groupId>
-										<artifactId>
-											maven-bundle-plugin
-										</artifactId>
-										<versionRange>
-											[2.3.7,)
-										</versionRange>
-										<goals>
-											<goal>manifest</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<ignore></ignore>
-									</action>
-								</pluginExecution>
-							</pluginExecutions>
-						</lifecycleMappingMetadata>
-					</configuration>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-		
+				
 	</build>
 
-	<!-- Dependencies that are automatically included -->
-	<dependencies>
-		<dependency>
-			<groupId>org.json</groupId>
-			<artifactId>json</artifactId>
-			<version>20090211</version>
-			<scope>compile</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.10</version>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
 </project>
